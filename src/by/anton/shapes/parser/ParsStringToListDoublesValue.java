@@ -1,0 +1,43 @@
+package by.anton.shapes.parser;
+
+import by.anton.shapes.exception.CustomRectangleException;
+import by.anton.shapes.exception.EmptyStringException;
+import by.anton.shapes.validator.ContainsNullValidator;
+
+import static by.anton.shapes.validator.StringContainsCorrectDoubleValueValidator.*;
+import static by.anton.shapes.validator.EmptyStringValidator.*;
+import static by.anton.shapes.validator.ContainsNullValidator.*;
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
+public class ParsStringToListDoublesValue {
+    private static final String SEPARATOR = ",";
+    private static  final int ARRAY_CAPACITY = 8;
+    public static List<Double[]> parsStringToDoubleArrays(List<String> strings)
+            throws EmptyStringException, CustomRectangleException {
+        if(isEmptyString(strings.toString())){
+            throw new EmptyStringException();
+        }
+
+        Double[] array;
+        List<Double[]> arrays = new ArrayList<>();
+        for (String string : strings) {
+            if(isStringContainsOnlyDoubleValues(string)) {
+                array = new Double[ARRAY_CAPACITY];
+                String [] elements = string.split(SEPARATOR);
+                for (int i = 0; i < elements.length; i++) {
+                    array[i] = Double.parseDouble(elements[i]);
+                }
+                if(isContainNull(array)) {
+                    throw new CustomRectangleException();
+                }
+                arrays.add(array);
+            }
+        }
+        return arrays;
+    }
+}
