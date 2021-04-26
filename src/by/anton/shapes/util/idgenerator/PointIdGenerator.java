@@ -4,6 +4,6 @@ public class PointIdGenerator {
     private static long id;
 
     public static long generatePointId(){
-        return id++;
+        return ++id;
     }
 }

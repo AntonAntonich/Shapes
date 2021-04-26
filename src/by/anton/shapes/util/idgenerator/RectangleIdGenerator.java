@@ -4,6 +4,7 @@ public class RectangleIdGenerator {
     private static long id;
 
     public static  long generateRectangleId(){
-        return id++;
+        return ++id;
     }
+
 }
