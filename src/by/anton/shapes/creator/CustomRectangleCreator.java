@@ -85,16 +85,16 @@ public class CustomRectangleCreator {
         try {
             strings = reader.readDataFromFile(ADDRESS);
         } catch (CustomReaderException e) {
-            e.printStackTrace();
+            //log
         } catch (EmptyStringException e) {
-            e.printStackTrace();
+            //log
         }
     }
 
     private void transformDataIntoDoubleArrays() {
         try{
             data = ParsStringToListDoublesValue.parsStringToDoubleArrays(strings);
-        } catch (EmptyStringException e) {
+        } catch (EmptyStringException | CustomRectangleException e) {
             //log
         }
     }
