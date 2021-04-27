@@ -6,19 +6,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CustomRectangleWarehouse {
-    private static final CustomRectangleWarehouse INSTANCE = new CustomRectangleWarehouse();
+    private static final CustomRectangleWarehouse instance = new CustomRectangleWarehouse();
     private Map<Long, CustomRectangleParameter> parameterMap = new HashMap<>();
 
     private CustomRectangleWarehouse() {}
 
     public  static CustomRectangleWarehouse getInstance() {
-        return INSTANCE;
+        return instance;
     }
 
     public CustomRectangleParameter putCustomRectangleParameter(long id, CustomRectangleParameter customRectangleParameter) {
-        CustomRectangleParameter current = parameterMap.get(id);
-        parameterMap.put(id, customRectangleParameter);
         //log id of previous
+        return parameterMap.put(id, customRectangleParameter);
+    }
+
+    public CustomRectangleParameter removeRectangleParameter(long id, CustomRectangleParameter customRectangleParameter) {
+        CustomRectangleParameter current = parameterMap.get(id);
+        parameterMap.remove(id, customRectangleParameter);
         return current;
     }
 

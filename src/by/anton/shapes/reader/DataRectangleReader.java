@@ -16,11 +16,10 @@ import static by.anton.shapes.validator.EmptyStringValidator.*;
 
 public class DataRectangleReader {
     public List<String> readDataFromFile(String fileAddress)
-            throws CustomReaderException, EmptyStringException{
-        if(isEmptyString(fileAddress)){
-            throw new EmptyStringException();
-        }
+            throws CustomReaderException{
+
         Path path = Paths.get(fileAddress);
+
         if(!Files.exists(path)){
             throw new CustomReaderException();
         }

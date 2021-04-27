@@ -2,7 +2,7 @@ package by.anton.shapes.validator;
 
 import java.util.List;
 
-public class StringContainsCorrectDoubleValueValidator {
+public class StringDoubleValidator {
     private static final String SEPARATOR = ",";
     public static boolean isStringContainsOnlyDoubleValues(String checkingString){
         boolean result = true;

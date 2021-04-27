@@ -7,9 +7,7 @@ import by.anton.shapes.observer.CustomRectangleObserver;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static by.anton.shapes.util.sidecreator.RectangleSideCreator.*;
-import static by.anton.shapes.util.idgenerator.RectangleIdGenerator.generateRectangleId;
+import static by.anton.shapes.util.idgenerator.IdGenerator.generateRectangleId;
 
 public class CustomRectangle implements Observable {
     private List<CustomRectangleObserver> customRectangleObserverList = new ArrayList<>();
@@ -36,19 +34,6 @@ public class CustomRectangle implements Observable {
 
     public long getRectangleId() {
         return this.rectangleId;
-    }
-
-    public double getRectangleWidth(){
-        double rectangleWidth =
-                createRectangleWidth(customPointB.getCoordinateY(), customPointA.getCoordinateY());
-        return rectangleWidth;
-    }
-
-    public double getRectangleLength(){
-        double rectangleLength =
-                createRectangleLength(customPointD.getCoordinateX(), customPointA.getCoordinateX());
-        return rectangleLength;
-
     }
 
     public CustomPoint getCustomPointA() {
@@ -88,17 +73,11 @@ public class CustomRectangle implements Observable {
 
     @Override
     public void attach(CustomRectangleObserver customRectangleObserver) throws CustomRectangleException {
-        if(customRectangleObserver == null) {
-            throw  new CustomRectangleException();
-        }
         customRectangleObserverList.add(customRectangleObserver);
     }
 
     @Override
     public void detach(CustomRectangleObserver customRectangleObserver) throws CustomRectangleException {
-        if(customRectangleObserver == null) {
-            throw  new CustomRectangleException();
-        }
         customRectangleObserverList.remove(customRectangleObserver);
     }
 
@@ -119,14 +98,22 @@ public class CustomRectangle implements Observable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CustomRectangle rectangle = (CustomRectangle) o;
-        boolean resultLength = rectangle.getRectangleLength() == this.getRectangleLength();
-        boolean resultWidth = rectangle.getRectangleWidth() == this.getRectangleWidth();
-        return (resultLength && resultWidth);
+        boolean resultId = rectangle.getRectangleId() == this.rectangleId;
+        boolean resultPointA = rectangle.getCustomPointA().equals(this.getCustomPointA());
+        boolean resultPointB = rectangle.getCustomPointB().equals(this.getCustomPointB());
+        boolean resultPointC = rectangle.getCustomPointC().equals(this.getCustomPointC());
+        boolean resultPointD = rectangle.getCustomPointD().equals(this.getCustomPointD());
+
+        return (resultId&& resultPointA && resultPointB && resultPointC && resultPointD);
     }
 
     @Override
     public int hashCode() {
-        int hash = 31 * (int)rectangleId;
+        int hash = (int)(31 * rectangleId
+                + customPointA.hashCode()
+                + customPointB.hashCode()
+                + customPointC.hashCode()
+                +customPointD.hashCode());
         return hash;
     }
 
@@ -134,8 +121,6 @@ public class CustomRectangle implements Observable {
     public String toString() {
         final StringBuffer sb = new StringBuffer("\nCustomRectangle{");
         sb.append("\nrectangleId = ").append(rectangleId);
-        sb.append("\nwidth = ").append(this.getRectangleWidth());
-        sb.append("\nlength = ").append(this.getRectangleLength());
         sb.append("\n");
         return sb.toString();
     }

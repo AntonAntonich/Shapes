@@ -2,19 +2,16 @@ package by.anton.shapes.parser;
 
 import by.anton.shapes.exception.CustomRectangleException;
 import by.anton.shapes.exception.EmptyStringException;
-import by.anton.shapes.validator.ContainsNullValidator;
 
-import static by.anton.shapes.validator.StringContainsCorrectDoubleValueValidator.*;
+import static by.anton.shapes.validator.StringDoubleValidator.*;
 import static by.anton.shapes.validator.EmptyStringValidator.*;
 import static by.anton.shapes.validator.ContainsNullValidator.*;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
-public class ParsStringToListDoublesValue {
+public class DataRectangleParser {
     private static final String SEPARATOR = ",";
     private static  final int ARRAY_CAPACITY = 8;
     public static List<Double[]> parsStringToDoubleArrays(List<String> strings)

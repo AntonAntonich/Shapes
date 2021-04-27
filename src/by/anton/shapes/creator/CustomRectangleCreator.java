@@ -6,8 +6,8 @@ import by.anton.shapes.exception.CustomReaderException;
 import by.anton.shapes.exception.CustomRectangleException;
 import by.anton.shapes.exception.EmptyStringException;
 import by.anton.shapes.observer.CustomRectangleObserver;
-import by.anton.shapes.observer.impl.ImplCustomRectangleObserver;
-import by.anton.shapes.parser.ParsStringToListDoublesValue;
+import by.anton.shapes.observer.impl.CustomRectangleObserverImpl;
+import by.anton.shapes.parser.DataRectangleParser;
 import by.anton.shapes.reader.DataRectangleReader;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class CustomRectangleCreator {
 
     private void attachingObserver() {
         try {
-            CustomRectangleObserver customRectangleObserver = new ImplCustomRectangleObserver();
+            CustomRectangleObserver customRectangleObserver = new CustomRectangleObserverImpl();
             for (CustomRectangle customRectangle : customRectangleList) {
                 customRectangle.attach(customRectangleObserver);
             }
@@ -86,14 +86,12 @@ public class CustomRectangleCreator {
             strings = reader.readDataFromFile(ADDRESS);
         } catch (CustomReaderException e) {
             //log
-        } catch (EmptyStringException e) {
-            //log
         }
     }
 
     private void transformDataIntoDoubleArrays() {
         try{
-            data = ParsStringToListDoublesValue.parsStringToDoubleArrays(strings);
+            data = DataRectangleParser.parsStringToDoubleArrays(strings);
         } catch (EmptyStringException | CustomRectangleException e) {
             //log
         }

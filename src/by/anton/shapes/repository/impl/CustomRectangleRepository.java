@@ -38,18 +38,12 @@ public class CustomRectangleRepository implements CustomRepository {
     }
 
     @Override
-    public boolean addByValue(CustomRectangle customRectangle) throws CustomRectangleException{
-        if(customRectangle == null) {
-            throw  new CustomRectangleException();
-        }
+    public boolean addByValue(CustomRectangle customRectangle) {
         return customRectangleList.add(customRectangle);
     }
 
     @Override
-    public boolean removeByValue(CustomRectangle customRectangle) throws CustomRectangleException{
-        if(customRectangle == null) {
-            throw  new CustomRectangleException();
-        }
+    public boolean removeByValue(CustomRectangle customRectangle) {
         return customRectangleList.remove(customRectangle);
     }
 
@@ -69,28 +63,19 @@ public class CustomRectangleRepository implements CustomRepository {
     }
 
     @Override
-    public int indexOf(CustomRectangle customRectangle) throws CustomRectangleException {
-        if(customRectangle == null) {
-            throw  new CustomRectangleException();
-        }
+    public int indexOf(CustomRectangle customRectangle) {
         return customRectangleList.indexOf(customRectangle);
     }
 
     @Override
-    public List<CustomRectangle> queryUsingStreams(Specification specification) throws CustomRectangleException {
-        if(specification == null) {
-            throw new CustomRectangleException();
-        }
+    public List<CustomRectangle> queryUsingStreams(Specification specification) {
         List<CustomRectangle> newCustomRectangleList =
                 customRectangleList.stream().filter(specification::specify).collect(Collectors.toList());
         return newCustomRectangleList;
     }
 
     @Override
-    public List<CustomRectangle> query(Specification specification) throws CustomRectangleException{
-        if(specification == null) {
-            throw new CustomRectangleException();
-        }
+    public List<CustomRectangle> query(Specification specification) {
         List<CustomRectangle> newCustomRectangleList = new ArrayList<>();
         for (CustomRectangle c : customRectangleList) {
             if(specification.specify(c)) {

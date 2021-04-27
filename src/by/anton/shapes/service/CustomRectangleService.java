@@ -1,15 +1,22 @@
 package by.anton.shapes.service;
 
-import by.anton.shapes.entity.CustomRectangle;
-
 public class CustomRectangleService {
-    public static double countRectanglePerimeter(CustomRectangle customRectangle) {
-        double perimeter = 2 * ((customRectangle.getRectangleWidth()) + (customRectangle.getRectangleLength()));
+    public static double countRectanglePerimeter(double width, double length) {
+        double perimeter = 2 * (width + length);
         return perimeter;
     }
 
-    public static double countRectangleSquare(CustomRectangle customRectangle) {
-        double square = customRectangle.getRectangleWidth() * customRectangle.getRectangleLength();
+    public static double countRectangleSquare(double width, double length) {
+        double square = width * length;
         return square;
+    }
+
+    public static double createRectangleWidth(double pointOne, double pointTwo){
+        double result = Math.abs(pointOne - pointTwo);
+        return result;
+    }
+    public static double createRectangleLength(double pointOne, double pointTwo){
+        double result = Math.abs(pointOne  - pointTwo);
+        return result;
     }
 }

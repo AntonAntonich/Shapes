@@ -1,6 +1,6 @@
 package by.anton.shapes.entity;
 
-import static by.anton.shapes.util.idgenerator.PointIdGenerator.generatePointId;
+import static by.anton.shapes.util.idgenerator.IdGenerator.*;
 
 
 public class CustomPoint {
@@ -45,7 +45,7 @@ public class CustomPoint {
 
     @Override
     public int hashCode() {
-        return (int)(17 * id);
+        return (int)(17 * id+ coordinateX + 32 * coordinateY);
     }
 
     @Override
