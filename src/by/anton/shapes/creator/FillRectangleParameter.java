@@ -7,9 +7,6 @@ import by.anton.shapes.exception.CustomRectangleException;
 class FillRectangleParameter {
      public static  CustomRectangleParameter fillRectangleParameter(CustomRectangle rectangle)
              throws CustomRectangleException {
-         if(rectangle == null) {
-             throw new CustomRectangleException();
-         }
          CustomRectangleParameter customRectangleParameter = new CustomRectangleParameter(rectangle);
          customRectangleParameter.countAllRectangleParameters();
          return customRectangleParameter;
